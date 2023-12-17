@@ -6,20 +6,20 @@ const DarkMode = () => {
 
     
     const [dark, setDark] = useState(true);
-    const [icon, setIcon] = useState(<IoSunnyOutline color='#f3f3f3' />);
+    const [icon, setIcon] = useState(<IoSunnyOutline cursor={"pointer"} color='#f3f3f3' />);
     
     const Changer = (e) => {
         e.preventDefault();
         setDark(!dark)
         const rootElement = document.documentElement
         if (dark) {
-            setIcon(<FaMoon color='black' />)
+            setIcon(<FaMoon cursor={"pointer"} color='black' />)
             rootElement.style.setProperty('--dark-color', '#f3f3f3')
             rootElement.style.setProperty('--light-color', 'black')
  
         }
         else {
-            setIcon(<IoSunnyOutline color='#f3f3f3' />)
+            setIcon(<IoSunnyOutline cursor={"pointer"} color='#f3f3f3' />)
             rootElement.style.setProperty('--dark-color', 'black')
             rootElement.style.setProperty('--light-color', '#f3f3f3')
        

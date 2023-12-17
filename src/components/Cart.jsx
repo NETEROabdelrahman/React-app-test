@@ -27,7 +27,7 @@ const Cart = () => {
             return (
               <div
                 key={item.id}
-                className="flex flex-row items-center text-center justify-between p-3 sm:text-lg text-[10px]"
+                className="flex flex-row items-center text-center p-3 sm:text-lg text-[10px]"
               >
                 <img
                   className=" w-[16%] basis-1/6"
@@ -36,6 +36,8 @@ const Cart = () => {
                 />
                 <p className='basis-1/6'>{item?.title}</p>
                 <p className='basis-1/6'>{item?.price}</p>
+                <div className=' basis-1/6 flex flex-row justify-between items-center'>
+
                 <button
                   className=" p-3 rounded bg-slate-500 hover:bg-green-200 hover:text-black disabled:bg-slate-200 transition-all border-none m-3 text-white cursor-pointer w-fit"
                   onClick={(e) =>
@@ -52,9 +54,10 @@ const Cart = () => {
                     decreaseQuantity(e, item.id);
                   }}
                   disabled={item?.count == 0 ? true : false}
-                >
+                  >
                   -
                 </button>
+                  </div>
                 <MdDelete className=' basis-1/6' color="red" cursor="pointer" onClick={() => remove(item.id)} />
                 <p className=' basis-1/6'>{item?.total}</p>
               </div>

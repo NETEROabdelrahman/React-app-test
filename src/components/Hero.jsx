@@ -11,7 +11,7 @@ function Hero() {
 
   return (
     <>
-      <h1 className=" flex items-center justify-center p-5">
+      <h1 className=" flex items-center justify-center p-5 text-[var(--dark-color)]">
         {t('main.products')}
       </h1>
       <div className=" m-3 p-3">
