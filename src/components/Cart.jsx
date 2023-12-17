@@ -62,7 +62,7 @@ const Cart = () => {
           <button onClick={() => clearCart()} className=" p-5 rounded bg-red-500 hover:bg-red-200 hover:text-black disabled:bg-green-400 transition-all border-none m-3 text-white cursor-pointer w-fit">
             clear cart
           </button>
-          <p>sub total: {subTotal}</p>
+          <p>total: {subTotal}</p>
         </div>
       )}
     </div>

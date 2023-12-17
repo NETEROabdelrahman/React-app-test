@@ -3,7 +3,6 @@ function Hero() {
   const {
     data,
     addToCart,
-    cart,
     increaseQuantity,
     decreaseQuantity,
   } = useGlobalContext();
@@ -21,14 +20,14 @@ function Hero() {
               return (
                 <div
                   key={product.id}
-                  className=" text-[var(--dark-color)] flex flex-row my-3 gap-3 "
+                  className=" text-[var(--dark-color)] flex sm:flex-row flex-col  items-center my-3 gap-3 border-2 border-black "
                 >
                   <img
                     src={product?.images[0]}
                     alt={product?.title}
-                    className=" rounded"
+                    className=" w-1/2 h-full rounded basis-1/2"
                   />
-                  <div className=" flex flex-col justify-between">
+                  <div className=" flex flex-col justify-between basis-1/2">
                     <div className="">
                       <h2>
                         {product?.brand} {product?.title}
@@ -43,7 +42,7 @@ function Hero() {
                       <h5>rating: {product?.rating}</h5>
                       <h5>available: {product?.stock}</h5>
                     </div>
-                    <div>
+                    <div className='flex flex-row justify-center items-center'>
                       <button
                         onClick={(e) => {
                           addToCart(e, product.id);
