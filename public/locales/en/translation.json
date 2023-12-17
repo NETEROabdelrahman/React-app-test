@@ -1,0 +1,16 @@
+{
+    "main":{
+        "products":"Products",
+        "home":"Home",
+        "yourItems":"your items",
+        "name":"name",
+        "price":"price",
+        "quantity":"quantity",
+        "remove":"remove",
+        "total":"total",
+        "clearCart":"clear cart",
+        "addToCart":"add to cart",
+        "inCart":"in cart",
+        "empty":"your cart is currently empty!"
+    }
+}

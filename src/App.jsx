@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Cart from './components/Cart';
 import Hero from './components/Hero';
 import Navbar from './components/Navbar';
@@ -20,4 +21,10 @@ function App() {
   );
 }
 
-export default App;
+export default function WrappedApp() {
+  return (
+    <Suspense>
+      <App/>
+    </Suspense>
+  )
+}
