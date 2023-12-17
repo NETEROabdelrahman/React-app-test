@@ -48,14 +48,14 @@ function Hero() {
                           addToCart(e, product.id);
                         }}
                         disabled={product?.disabled ? true : false}
-                        className=" p-3 rounded bg-slate-500 hover:bg-slate-200 hover:text-black disabled:bg-green-400 transition-all border-none m-3 text-white cursor-pointer w-fit"
+                        className=" p-3 rounded bg-slate-500 hover:bg-green-300 hover:text-[var(--dark-color)] disabled:bg-green-400 transition-all border-none m-3 text-[var(--light-color)] cursor-pointer w-fit"
                       >
                         {product?.disabled
                           ? 'in cart'
                           : 'add to cart'}
                       </button>
                       <button
-                        className=" p-3 rounded bg-slate-500 hover:bg-slate-200 hover:text-black disabled:bg-slate-200 transition-all border-none m-3 text-white cursor-pointer w-fit"
+                        className=" p-3 rounded bg-slate-500 hover:bg-green-300 hover:text-[var(--dark-color)] disabled:bg-slate-200 transition-all border-none m-3 text-[var(--light-color)] cursor-pointer w-fit"
                         onClick={(e) =>
                           increaseQuantity(e, product.id)
                         }
@@ -65,7 +65,7 @@ function Hero() {
                       </button>
                       <h5>{product.count>0 && product.count}</h5>
                       <button
-                        className=" p-3 rounded bg-slate-500 hover:bg-slate-200 hover:text-black disabled:bg-slate-200 transition-all border-none m-3 text-white cursor-pointer w-fit"
+                        className=" p-3 rounded bg-slate-500 hover:bg-green-300 hover:text-[var(--dark-color)] disabled:bg-slate-200 transition-all border-none m-3 text-[var(--light-color)] cursor-pointer w-fit"
                         onClick={(e) => {
                           decreaseQuantity(e, product.id);
                         }}

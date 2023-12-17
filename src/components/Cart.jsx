@@ -5,7 +5,7 @@ const Cart = () => {
   const { cart, clearCart, subTotal, remove, increaseQuantity, decreaseQuantity } = useGlobalContext();
 
   return (
-    <div>
+    <div className='text-[var(--dark-color)]'>
       {cart.length < 1 ? (
         <h1 className=" text-center p-4">
           your cart is currently empty!
@@ -35,7 +35,7 @@ const Cart = () => {
                 <p className='basis-1/6'>{item?.title}</p>
                 <p className='basis-1/6'>{item?.price}</p>
                 <button
-                  className=" p-3 rounded bg-slate-500 hover:bg-slate-200 hover:text-black disabled:bg-slate-200 transition-all border-none m-3 text-white cursor-pointer w-fit"
+                  className=" p-3 rounded bg-slate-500 hover:bg-green-200 hover:text-black disabled:bg-slate-200 transition-all border-none m-3 text-white cursor-pointer w-fit"
                   onClick={(e) =>
                     increaseQuantity(e, item.id)
                   }
@@ -45,7 +45,7 @@ const Cart = () => {
                 </button>
                 <h5>{item.count > 0 && item.count}</h5>
                 <button
-                  className=" p-3 rounded bg-slate-500 hover:bg-slate-200 hover:text-black disabled:bg-slate-200 transition-all border-none m-3 text-white cursor-pointer w-fit"
+                  className=" p-3 rounded bg-slate-500 hover:bg-green-200 hover:text-black disabled:bg-slate-200 transition-all border-none m-3 text-white cursor-pointer w-fit"
                   onClick={(e) => {
                     decreaseQuantity(e, item.id);
                   }}
@@ -59,10 +59,10 @@ const Cart = () => {
             );
           })}
           <hr className="m-5" />
-          <button onClick={() => clearCart()} className=" p-5 rounded bg-red-500 hover:bg-red-200 hover:text-black disabled:bg-green-400 transition-all border-none m-3 text-white cursor-pointer w-fit">
+          <button onClick={() => clearCart()} className=" p-5 rounded bg-red-500 hover:bg-red-300 hover:text-black disabled:bg-green-400 transition-all border-none m-3 text-white cursor-pointer w-fit">
             clear cart
           </button>
-          <p>total: {subTotal}</p>
+          <h2 className='p-3'>total: {subTotal}</h2>
         </div>
       )}
     </div>
