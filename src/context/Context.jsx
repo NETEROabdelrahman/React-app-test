@@ -6,8 +6,10 @@ const URL = 'https://dummyjson.com/products';
 const AppProvider = ({ children }) => {
   const [data, setData] = useState(null);
   const [cart, setCart] = useState([]);
+  const [subTotal,setSubtotal] = useState(0)
 
-  console.log(data);
+
+  // console.log(data);
   //Fetch all data
   const fetchData = async () => {
     const res = await axios.get(URL);
@@ -19,9 +21,7 @@ const AppProvider = ({ children }) => {
   //put products in cart
   const addToCart = (e, id) => {
     const temp = data && [...data];
-    const index = temp.indexOf(
-      data.find((item) => item.id === id),
-    );
+    const index = temp.indexOf(data.find((item) => item.id === id));
     const product = temp[index];
     if (product.stock > 0) {
       product.inCart = true;
@@ -29,40 +29,78 @@ const AppProvider = ({ children }) => {
       const price = product.price;
       product.total = price;
       product.disabled = true;
-      product.stock-=1
-      setCart([...cart, product]);
-    }
-  };
-  
-  const increaseQuantity = (e,id) => {
-    const temp = data && [...data];
-    const index = temp.indexOf(
-      data.find((item) => item.id === id),
-      );
-    const product = temp[index];
-    if (product.stock > 0) {
-      const filteredData = data.filter(item=>item.id !== product.id)
-      setData([product,...filteredData])
-      product.count += 1;
       product.stock -= 1;
+      setCart([...cart, product]);
+      setSubtotal([...cart, product].reduce((a,b)=>a + b.total,0))
     }
   };
 
-  const decreaseQuantity = (e,id) => {
+  //increase quantity in cart
+  const increaseQuantity = (e, id) => {
     const temp = data && [...data];
-    const index = temp.indexOf(
-      data.find((item) => item.id === id),
+    const index = temp.indexOf(data.find((item) => item.id === id));
+    const product = temp[index];
+    if (product.stock > 0 && product.inCart) {
+      const filteredData = data.filter(
+        (item) => item.id !== product.id,
       );
-      const product = temp[index];
-      if (product.count > 0) {
-        const filteredData = data.filter(item=>item.id !== product.id)
-        setData([product,...filteredData])
-        product.count -= 1;
-        product.stock += 1;
+      setData([product, ...filteredData]);
+      product.count += 1;
+      product.stock -= 1;
+      product.total = product.price * product.count;
+      setSubtotal(cart.reduce((a,b)=>a + b.total,0))
     }
-      
-      console.log(product.stock)
-    };
+  };
+
+  //decrease quantity in cart
+  const decreaseQuantity = (e, id) => {
+    const temp = data && [...data];
+    const index = temp.indexOf(data.find((item) => item.id === id));
+    const product = temp[index];
+    if (product.count > 0 && product.inCart) {
+      const filteredData = data.filter(
+        (item) => item.id !== product.id,
+      );
+      setData([product, ...filteredData]);
+      product.count -= 1;
+      product.stock += 1;
+      product.total = product.price * product.count;
+      setSubtotal(cart.reduce((a, b) => a + b.total, 0));
+      if (product.count < 1) {
+        const filteredCart = cart.filter(item => item.id !== id)
+        product.disabled = false;
+        setCart(filteredCart)
+      }
+
+    }
+
+    console.log(product.stock);
+  };
+
+  //remove product from cart
+  const remove = (id) => {
+    const temp = data && [...data];
+    const index = temp.indexOf(data.find((item) => item.id === id));
+    const product = temp[index];
+    product.stock += product.count;
+    product.count = 0;
+    product.total = 0;
+    product.disabled = false;
+    console.log(product)
+    const filteredData = data.filter(item => item.id !== product.id);
+    setData([product, ...filteredData]);
+
+    const filteredCart = cart.filter(item => item.id !== id)
+    setCart(filteredCart)
+    setSubtotal(cart.reduce((a,b)=>a + b.total,0))
+
+  }
+
+  //clear cart
+  const clearCart = () => {
+    setCart([]);
+    fetchData()
+  };
 
   return (
     <AppContext.Provider
@@ -71,7 +109,10 @@ const AppProvider = ({ children }) => {
         addToCart,
         cart,
         increaseQuantity,
-        decreaseQuantity
+        decreaseQuantity,
+        clearCart,
+        subTotal,
+        remove
       }}
     >
       {children}
