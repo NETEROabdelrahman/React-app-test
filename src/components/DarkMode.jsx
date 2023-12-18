@@ -22,16 +22,8 @@ const DarkMode = () => {
             setIcon(<IoSunnyOutline cursor={"pointer"} color='#f3f3f3' />)
             rootElement.style.setProperty('--dark-color', 'black')
             rootElement.style.setProperty('--light-color', '#f3f3f3')
-       
         }
-            
-            
     }
-        
-    
-
-
-
     return (
         <>
             <div className='colorChanger' onClick={Changer} >

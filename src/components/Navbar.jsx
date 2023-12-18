@@ -41,7 +41,7 @@ const Navbar = () => {
             }
           }} />
           <div className={`absolute ${tabOpen ? "flex" : "hidden"} flex-col bg-[var(--dark-color)] rounded right-0 bottom-[-85px] p-3 gap-3 transition-all`}>
-            <h5 className=' cursor-pointer text-[var(--light-color)]'>{t('main.products')}</h5>
+            <h5 className=' cursor-pointer text-[var(--light-color)]'><Link to={"/"}>{t('main.products')}</Link></h5>
             <h5 className=' cursor-pointer text-[var(--light-color)]' onClick={() => setlngOpen(!lngOpen)}>{t('main.settings')}</h5>
           </div>
           <div className={`absolute ${lngOpen && tabOpen ? "flex" : "hidden"} flex-col bg-[var(--dark-color)] rounded right-[78px] bottom-[-120px] p-3 gap-3 transition-all`}>

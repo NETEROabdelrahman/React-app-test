@@ -6,14 +6,16 @@ function Hero() {
     addToCart,
     increaseQuantity,
     decreaseQuantity,
+    error
   } = useGlobalContext();
-  const {t,i18n} = useTranslation()
+  const {t} = useTranslation()
 
   return (
     <>
       <h1 className=" flex items-center justify-center p-5 text-[var(--dark-color)]">
         {t('main.products')}
       </h1>
+      {error && <h1 className='text-center'>{ error.message}</h1>}
       <div className=" m-3 p-3">
         {data &&
           data
@@ -65,7 +67,7 @@ function Hero() {
                       >
                         +
                       </button>
-                      <h5>{product.count>0 && product.count}</h5>
+                      <h5>{product.count > 0 && product.count}</h5>
                       <button
                         className=" p-3 rounded bg-slate-500 hover:bg-green-300 hover:text-[var(--dark-color)] disabled:bg-slate-200 transition-all border-none m-3 text-[var(--light-color)] cursor-pointer w-fit"
                         onClick={(e) => {

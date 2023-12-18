@@ -4,7 +4,7 @@ import { MdDelete } from 'react-icons/md';
 
 const Cart = () => {
   const { cart, clearCart, subTotal, remove, increaseQuantity, decreaseQuantity } = useGlobalContext();
-  const {t,i18n} = useTranslation()
+  const {t} = useTranslation()
 
   return (
     <div className='text-[var(--dark-color)]'>
@@ -39,7 +39,7 @@ const Cart = () => {
                 <div className=' basis-1/6 flex flex-row justify-between items-center'>
 
                 <button
-                  className=" p-3 rounded bg-slate-500 hover:bg-green-200 hover:text-black disabled:bg-slate-200 transition-all border-none m-3 text-white cursor-pointer w-fit"
+                  className=" sm:p-3 p-1 rounded bg-slate-500 hover:bg-green-200 hover:text-black disabled:bg-slate-200 transition-all border-none m-1 text-white cursor-pointer w-fit"
                   onClick={(e) =>
                     increaseQuantity(e, item.id)
                   }
@@ -49,7 +49,7 @@ const Cart = () => {
                 </button>
                 <h5>{item.count > 0 && item.count}</h5>
                 <button
-                  className=" p-3 rounded bg-slate-500 hover:bg-green-200 hover:text-black disabled:bg-slate-200 transition-all border-none m-3 text-white cursor-pointer w-fit"
+                  className=" sm:p-3 p-1 rounded bg-slate-500 hover:bg-green-200 hover:text-black disabled:bg-slate-200 transition-all border-none m-1 text-white cursor-pointer w-fit"
                   onClick={(e) => {
                     decreaseQuantity(e, item.id);
                   }}

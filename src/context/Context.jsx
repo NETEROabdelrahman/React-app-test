@@ -6,18 +6,25 @@ const URL = 'https://dummyjson.com/products';
 const AppProvider = ({ children }) => {
   const [data, setData] = useState(null);
   const [cart, setCart] = useState([]);
-  const [subTotal,setSubtotal] = useState(0)
+  const [subTotal, setSubtotal] = useState(0)
+  const [error, setError] = useState(null);
 
-
-  // console.log(data);
+  
+ 
   //Fetch all data
   const fetchData = async () => {
-    const res = await axios.get(URL);
-    setData(res.data.products);
+    try {
+      const res = await axios.get(URL);
+      setData(res.data.products);
+    } catch (err) {
+      console.log(err)
+      setError(err)
+    }
   };
   useEffect(() => {
-    fetchData();
+    fetchData()
   }, []);
+
   //put products in cart
   const addToCart = (e, id) => {
     const temp = data && [...data];
@@ -71,10 +78,7 @@ const AppProvider = ({ children }) => {
         product.disabled = false;
         setCart(filteredCart)
       }
-
     }
-
-    console.log(product.stock);
   };
 
   //remove product from cart
@@ -86,7 +90,6 @@ const AppProvider = ({ children }) => {
     product.count = 0;
     product.total = 0;
     product.disabled = false;
-    console.log(product)
     const filteredData = data.filter(item => item.id !== product.id);
     setData([product, ...filteredData]);
 
@@ -112,7 +115,8 @@ const AppProvider = ({ children }) => {
         decreaseQuantity,
         clearCart,
         subTotal,
-        remove
+        remove,
+        error
       }}
     >
       {children}
